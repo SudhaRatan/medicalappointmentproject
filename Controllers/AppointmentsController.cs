@@ -21,10 +21,10 @@ namespace medicalappointmentproject.Controllers
 
         // GET: Appointments
 
-        public async  Task<IActionResult> GetData(IFormCollection data)
+        public IActionResult GetData(IFormCollection data)
         {
             string disease = data["Disease"];
-            DoctorDetail doctor = await _appointmentsService.GetDoctorData(disease);
+            DoctorDetail doctor = _appointmentsService.GetDoctorData(disease);
             return Json(new { doctorname = doctor.DoctorName, timeslot = doctor.AvailableTime });
         }
 
@@ -53,7 +53,7 @@ namespace medicalappointmentproject.Controllers
         // GET: Appointments/Create
         public IActionResult Create()
         {
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList();
+            ViewData["MedicalIssue"] = _appointmentsService.CreateListGet();
             return View();
         }
 
@@ -64,12 +64,19 @@ namespace medicalappointmentproject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AppointmentId,PatientName,MedicalIssue,DoctorToVisit,DoctorAvalialbeTime,AppointmentTime")] Appointment appointment)
         {
-            if (ModelState.IsValid)
+            try
             {
+
                 await _appointmentsService.CreateAppointmentAsync(appointment);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList();
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return NotFound();
+            }
+
+            ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
             return View(appointment);
         }
 
@@ -86,7 +93,7 @@ namespace medicalappointmentproject.Controllers
             {
                 return NotFound();
             }
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList();
+            ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
             return View(appointment);
         }
 
@@ -102,19 +109,17 @@ namespace medicalappointmentproject.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _appointmentsService.EditAppointmentAsync(appointment);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                        return NotFound();
-                }
-                return RedirectToAction(nameof(Index));
+                _appointmentsService.EditAppointmentAsync(appointment);
             }
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList();
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction(nameof(Index));
+            ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
             return View(appointment);
         }
 
