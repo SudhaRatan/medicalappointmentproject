@@ -1,0 +1,51 @@
+﻿@model IEnumerable<medicalappointmentproject.Models.DiseasesDoctorDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Disease Doctor Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DiseasesId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiseasesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuitableDoctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuitableDoctor.DoctorName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiseasesId)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiseasesName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuitableDoctor.DoctorId)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SuitableDoctor.DoctorName)
+                </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.DiseasesName">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
