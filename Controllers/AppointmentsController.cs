@@ -58,8 +58,6 @@ namespace medicalappointmentproject.Controllers
         }
 
         // POST: Appointments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AppointmentId,PatientName,MedicalIssue,DoctorToVisit,DoctorAvalialbeTime,AppointmentTime")] Appointment appointment)
@@ -73,11 +71,11 @@ namespace medicalappointmentproject.Controllers
             catch (Exception ex)
             {
                 Console.Write(ex.Message);
-                return NotFound();
+                ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
+                return View(appointment);
             }
 
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
-            return View(appointment);
+
         }
 
         // GET: Appointments/Edit/5
@@ -112,15 +110,14 @@ namespace medicalappointmentproject.Controllers
             try
             {
                 _appointmentsService.EditAppointmentAsync(appointment);
+                return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
+                return View(appointment);
             }
 
-            return RedirectToAction(nameof(Index));
-            ViewData["MedicalIssue"] = _appointmentsService.CreateList(appointment);
-            return View(appointment);
         }
 
         // GET: Appointments/Delete/5

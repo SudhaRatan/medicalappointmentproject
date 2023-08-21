@@ -77,7 +77,7 @@ namespace medicalappointmentproject.DataAccess
             return null;
         }
 
-        public DoctorDetail GetDoctorData(string disease)
+        public DoctorDetail GetDoctorData(string? disease)
         {
             //Executing Stored procedure which takes disease name as input and results in Doctor modal which maps to the disease id
 
