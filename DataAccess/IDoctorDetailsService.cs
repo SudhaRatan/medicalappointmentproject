@@ -1,7 +1,7 @@
-﻿using medicalappointmentproject.Models;
+﻿using HospitalAppointmentProject.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace medicalappointmentproject.DataAccess
+namespace HospitalAppointmentProject.DataAccess
 {
     public interface IDoctorDetailsService
     {

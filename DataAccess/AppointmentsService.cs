@@ -1,9 +1,9 @@
-﻿using medicalappointmentproject.Models;
+﻿using HospitalAppointmentProject.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace medicalappointmentproject.DataAccess
+namespace HospitalAppointmentProject.DataAccess
 {
     public class AppointmentsService : IAppointmentsService
     {

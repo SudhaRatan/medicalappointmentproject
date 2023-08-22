@@ -1,5 +1,5 @@
-using medicalappointmentproject.DataAccess;
-using medicalappointmentproject.Models;
+using HospitalAppointmentProject.DataAccess;
+using HospitalAppointmentProject.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

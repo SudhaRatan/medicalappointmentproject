@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using medicalappointmentproject.Models;
-using medicalappointmentproject.DataAccess;
+using HospitalAppointmentProject.Models;
+using HospitalAppointmentProject.DataAccess;
 
-namespace medicalappointmentproject.Controllers
+namespace HospitalAppointmentProject.Controllers
 {
     public class DiseasesDoctorDetailsController : Controller
     {

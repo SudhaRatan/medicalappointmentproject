@@ -1,8 +1,8 @@
-﻿using medicalappointmentproject.Models;
+﻿using HospitalAppointmentProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace medicalappointmentproject.Controllers
+namespace HospitalAppointmentProject.Controllers
 {
     public class HomeController : Controller
     {

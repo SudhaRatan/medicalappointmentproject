@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace medicalappointmentproject.Models;
+namespace HospitalAppointmentProject.Models;
 
 public partial class MedicalprojectContext : DbContext
 {

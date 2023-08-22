@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace medicalappointmentproject.Models;
+namespace HospitalAppointmentProject.Models;
 
 public partial class DoctorDetail
 {
